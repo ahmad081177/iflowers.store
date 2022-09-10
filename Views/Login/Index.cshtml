@@ -1,0 +1,76 @@
+﻿@model FlowerStoreMVC.Models.UserTable
+@{
+    ViewBag.Title = "Login";
+}
+
+<style>
+    .main-div {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        -webkit-transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%);
+    }
+    .field-validation-error
+    {
+        color:red;
+    }
+</style>
+
+<h2>Login</h2>
+
+<div class="main-div">
+    @using (Html.BeginForm("DoLogin","Login",FormMethod.Post))
+    {
+    <table>
+        <tr>
+            <td></td>
+            <td><strong><i>Welcome to iFlowers Store</i></strong></td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(model => model.UserName)</td>
+            <td>@Html.EditorFor(model => model.UserName)</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>@Html.ValidationMessageFor(model => model.UserName)</td>
+        </tr>
+
+        <tr>
+            <td>@Html.LabelFor(model => model.Password)</td>
+            <td>@Html.EditorFor(model => model.Password)</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>@Html.ValidationMessageFor(model => model.Password)</td>
+        </tr>
+
+        <tr>
+            <td>@Html.LabelFor(model => model.Email)</td>
+            <td>@Html.EditorFor(model => model.Email)</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>@Html.ValidationMessageFor(model => model.Email)</td>
+        </tr>
+
+        <tr>
+            <td colspan="2">
+                <label class="field-validation-error">@Html.DisplayFor(model => model.LoginErrorMessage)</label>
+            </td>
+        </tr>
+
+        <tr>
+            <td></td>
+            <td>
+                <input type="submit" name="name" value="Login" />
+                <input type="reset" name="name" value="Clear" />
+            </td>
+        </tr>
+    </table>
+    }
+</div>
+
+<script src="~/Scripts/jquery-1.8.0.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>

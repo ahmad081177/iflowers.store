@@ -1,0 +1,41 @@
+Packages:
+Microsoft.EntityFrameworkCore
+Microsoft.EntityFrameworkCore.SqlServer
+Microsoft.EntityFrameworkCore.Tools
+
+New Class:
+Flowers
+
+New Class:
+public class FlowersDbContext : DbContext
+    {
+        public FlowersDbContext(DbContextOptions<FlowersDbContext> options) : base(options)
+        {
+        }
+        public DbSet<Flower> Flowers { get; set; }
+    }
+    
+    
+appsettings.json
+"ConnectionStrings": {
+    "DefaultConnection": "Server=(localdb)\\mssqllocaldb;AttachDBFilename=[DataDirectory]\\App_Data\\flowers.mdf;Initial Catalog=MyDBHW1;Trusted_Connection=True;MultipleActiveResultSets=true"
+  }
+  
+
+Program.cs:
+string path = Directory.GetCurrentDirectory();
+
+builder.Services.AddDbContext<FlowersDbContext>(options =>
+    options.UseSqlServer(
+        builder.Configuration.GetConnectionString("DefaultConnection")
+        .Replace("[DataDirectory]", path)));
+
+New Folder:
+App_Data
+
+Package Manager Console:
+add-migration "0-init"
+update-database
+
+
+Project => R.Click => Add => New => Scafolded Item
